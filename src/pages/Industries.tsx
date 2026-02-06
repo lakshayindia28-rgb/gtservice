@@ -1,83 +1,130 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
-import { Landmark, Shield, Building, Users, ArrowRight, CheckCircle } from 'lucide-react';
+import {
+  Landmark,
+  Shield,
+  Building,
+  Users,
+  Home,
+  Briefcase,
+  ArrowRight,
+  CheckCircle,
+} from 'lucide-react';
 
 const industries = [
   {
     icon: Landmark,
-    title: 'Banks & NBFCs',
-    description: 'Comprehensive verification services for lending institutions including pre-disbursement verification, document authentication, and field investigation.',
+    title: 'Banks & NBFCs (BFSI)',
+    description: 'FI / CPV, RCU / FCU support, fraud checks and verification workflows for lending and onboarding.',
     services: [
-      'Pre-Disbursement Verification',
-      'Document Authentication',
+      'FI / CPV (Field Investigation / Contact Point Verification)',
       'Address & Employment Verification',
-      'Income Verification',
-      'Property Verification',
-      'RCU/FCU Support',
+      'Bank Statement / Document Verification (as per scope)',
+      'RCU / FCU support and reporting',
+      'Property Verification & Valuation support',
+      'IT-enabled reporting and dashboards (optional)',
     ],
     useCases: [
-      'Personal Loan Verification',
-      'Home Loan Processing',
-      'Vehicle Finance',
-      'Business Loan Due Diligence',
+      'Loan onboarding and pre-disbursement checks',
+      'Fraud risk review and investigation support',
+      'KYC / due diligence operations',
+      'Field reporting with location-enabled workflows',
     ],
   },
   {
     icon: Shield,
     title: 'Insurance Companies',
-    description: 'Claims investigation, policy verification, and fraud detection services for general and life insurance companies.',
+    description: 'Claims investigation, verification, and fraud detection support with structured reporting.',
     services: [
-      'Claims Investigation',
-      'Policy Verification',
-      'Fraud Detection',
-      'Mortality Investigation',
-      'Hospital Verification',
-      'Document Verification',
+      'Claims investigation support',
+      'Document and profile verification (as per scope)',
+      'Address verification and field checks',
+      'Fraud red-flag identification',
+      'Standardized reports and exception notes',
+      'IT-enabled real-time reporting (optional)',
     ],
     useCases: [
-      'Health Insurance Claims',
-      'Motor Insurance Claims',
-      'Life Insurance Verification',
-      'Fraud Prevention',
+      'Claims verification and investigation',
+      'Policy verification support',
+      'Fraud screening and field validation',
+      'Turnaround-time driven reporting',
     ],
   },
   {
     icon: Building,
     title: 'Corporate Sector',
-    description: 'Employee background verification, vendor due diligence, and corporate investigation services for enterprises.',
+    description: 'Employee background verification, vendor due diligence, and corporate verification support.',
     services: [
-      'Pre-Employment Screening',
-      'Reference Verification',
-      'Education Verification',
-      'Criminal Record Check',
-      'Vendor Due Diligence',
-      'Corporate Investigation',
+      'Employee background verification support',
+      'Vendor / partner verification (as per scope)',
+      'Business verification and site visits',
+      'Compliance support (GST/ITR as required)',
+      'Standardized checklists and reporting',
+      'IT services for secure internal tools (optional)',
     ],
     useCases: [
-      'New Hire Verification',
-      'Vendor Onboarding',
-      'Internal Investigations',
-      'Compliance Audits',
+      'Hiring and onboarding verification',
+      'Vendor onboarding and due diligence',
+      'Site verification for operational partners',
+      'Audit-ready reporting outputs',
     ],
   },
   {
     icon: Users,
-    title: 'Risk & Due Diligence Firms',
-    description: 'Partner with risk management firms for comprehensive due diligence and investigation support.',
+    title: 'Risk & Due Diligence Teams',
+    description: 'Investigation and verification support for risk decisions across sectors and geographies.',
     services: [
-      'Partner Screening',
-      'Investment Due Diligence',
-      'Asset Verification',
-      'Business Intelligence',
-      'Litigation Support',
-      'Compliance Audits',
+      'Investigation support',
+      'RCU / FCU / FI / KYC checks',
+      'Document and profile verification (as per scope)',
+      'Fast TAT with standardized outputs',
+      'Hybrid field + office execution model',
+      'Secure, IT-enabled reporting (optional)',
     ],
     useCases: [
-      'M&A Due Diligence',
-      'Investment Screening',
-      'Partnership Verification',
-      'Regulatory Compliance',
+      'Portfolio-level verification operations',
+      'Fraud screening support',
+      'Custom checklist-based verifications',
+      'Reporting and audit trail for outcomes',
+    ],
+  },
+  {
+    icon: Home,
+    title: 'Real Estate & Property',
+    description: 'Property verification and valuation support to reduce risk in transactions and lending.',
+    services: [
+      'Property verification support (as per scope)',
+      'Property valuation summary',
+      'Document checks and exception reporting',
+      'Field visit and observation notes',
+      'Standardized reporting format',
+      'Turnaround-time driven delivery',
+    ],
+    useCases: [
+      'Pre-purchase verification support',
+      'Lending collateral assessment support',
+      'Valuation for underwriting decisions',
+      'Risk review for property transfers',
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: 'IT-Enabled Operations',
+    description: 'IT services and product design to support field operations, reporting, and secure workflows.',
+    services: [
+      'Product discovery and UX/UI for workflows',
+      'Web portals and dashboards',
+      'Mobile apps for field reporting (GPS/map enabled)',
+      'Secure server setup and access controls',
+      'Automation and audit trails',
+      'Support and maintenance',
+    ],
+    useCases: [
+      'Real-time reporting systems',
+      'Operations dashboards for verification teams',
+      'Case assignment and tracking tools',
+      'Secure data handling and backups',
     ],
   },
 ];
@@ -100,11 +147,11 @@ const Industries = () => {
               Industries We Serve
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Trusted by{' '}
-              <span className="gradient-text">Leading Enterprises</span>
+              Industries We{' '}
+              <span className="gradient-text">Serve</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Specialized verification solutions for diverse industry verticals, each tailored to meet specific regulatory and operational requirements.
+              GUST TASK SERVICES PRIVATE LIMITED supports organizations with investigation, verification, due diligence, and compliance services — backed by IT-enabled reporting.
             </p>
           </motion.div>
         </div>
@@ -132,7 +179,7 @@ const Industries = () => {
                     <h2 className="text-2xl font-bold mb-3">{industry.title}</h2>
                     <p className="text-muted-foreground">{industry.description}</p>
                     <Link
-                      to="/contact"
+                      to="/login"
                       className="inline-flex items-center gap-2 mt-6 text-primary font-medium hover:underline"
                     >
                       Get Started
@@ -181,7 +228,7 @@ const Industries = () => {
             Not in the List? We Still Serve You
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Our verification services extend beyond these industries. Contact us to discuss your specific requirements.
+            Our delivery model works across domains. Contact us to discuss your verification scope, checklist, and turnaround time.
           </p>
           <Link
             to="/contact"

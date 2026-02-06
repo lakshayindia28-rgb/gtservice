@@ -45,7 +45,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8"
           >
             <Shield className="w-4 h-4" />
-            <span>Trusted by 500+ Financial Institutions</span>
+            <span>Investigation • Verification • Due Diligence</span>
           </motion.div>
 
           {/* Main Heading */}
@@ -67,7 +67,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
           >
-            Delivering accurate risk intelligence, compliance & due diligence with precision-driven verification solutions for enterprises and financial institutions.
+            We maintain high standards of professional work culture and ethics. We execute work on client sites as well as in our office — on assignment or retainership (BPO) basis. Our delivery is supported by secure, IT-enabled reporting (mobile app, real-time tracking, and licensed software).
           </motion.p>
 
           {/* CTA Buttons */}
@@ -93,9 +93,14 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-16 pt-12 border-t border-border/50"
           >
-            <p className="text-sm text-muted-foreground mb-6">Compliance & Security Certifications</p>
+            <p className="text-sm text-muted-foreground mb-6">How We Work</p>
             <div className="flex flex-wrap justify-center items-center gap-8">
-              {['ISO 27001 Certified', 'Data Privacy Compliant', 'Licensed Operations', 'Secure Infrastructure'].map((cert, index) => (
+              {[
+                'On-site & Office Execution',
+                'Assignment / Retainership (BPO)',
+                'Real-time Mobile Reporting',
+                'Secure Private Servers',
+              ].map((cert, index) => (
                 <motion.div
                   key={cert}
                   initial={{ opacity: 0, y: 20 }}

@@ -1,31 +1,36 @@
 import { motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
-import { Linkedin, Mail } from 'lucide-react';
 
 const leaders = [
   {
     name: 'Mr. Ajay Kumar Pathak',
-    role: 'Chairman & Managing Director',
-    description: 'A visionary leader with over 20 years of experience in investigation and verification services. Mr. Pathak has been instrumental in building Gust Task into a trusted name in the industry.',
-    expertise: ['Strategic Leadership', 'Business Development', 'Industry Relations'],
+    role: 'Chief Managing Director',
+    description: 'Leads the organization with a focus on risk management, KYC assignments, due diligence, prudential checks, and background verification operations.',
+    expertise: ['Risk Management', 'KYC / Due Diligence', 'Background Verification'],
   },
   {
     name: 'Mr. Ram Sevak Shukla',
     role: 'Director',
-    description: 'With extensive experience in operations management and field investigations, Mr. Shukla oversees the company\'s verification operations across multiple states.',
-    expertise: ['Operations Management', 'Field Investigation', 'Quality Control'],
+    description: 'B.Tech (Civil) and extensive experience in engineering leadership roles, supporting governance and operational discipline.',
+    expertise: ['Leadership', 'Operations Discipline', 'Governance'],
   },
   {
     name: 'Mr. Priyanshu Dubey',
     role: 'Director',
-    description: 'Mr. Dubey brings expertise in technology integration and process optimization, driving digital transformation in verification services.',
-    expertise: ['Technology', 'Process Optimization', 'Innovation'],
+    description: 'Supports leadership and delivery with experience in risk management and verification operations.',
+    expertise: ['Risk Management', 'Verification Ops', 'Execution'],
+  },
+  {
+    name: 'Vishal Pandey',
+    role: 'CTO / IT Head',
+    description: 'Leads IT systems and reporting infrastructure supporting field operations — including mobile application workflows, map-enabled tracking support, and secure server practices.',
+    expertise: ['IT Infrastructure', 'Mobile App Reporting', 'Secure Systems'],
   },
   {
     name: 'Mrs. Ritika Thakur',
-    role: 'Operations Head',
-    description: 'Leading the operations team, Mrs. Thakur ensures seamless execution of verification services with a focus on client satisfaction and quality delivery.',
-    expertise: ['Operations', 'Client Relations', 'Team Management'],
+    role: 'Operation Head',
+    description: 'Leads office operations and execution support for risk management and verification delivery.',
+    expertise: ['Office Operations', 'Execution Support', 'Quality Reporting'],
   },
 ];
 
@@ -51,7 +56,7 @@ const Leadership = () => {
               <span className="gradient-text">Leadership Team</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Experienced professionals driving excellence in verification and investigation services.
+              Experienced professionals driving excellence in verification operations and IT-enabled reporting.
             </p>
           </motion.div>
         </div>
@@ -97,16 +102,6 @@ const Leadership = () => {
                       </span>
                     ))}
                   </div>
-
-                  {/* Social Links */}
-                  <div className="flex items-center gap-3">
-                    <button className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
-                      <Linkedin className="w-5 h-5" />
-                    </button>
-                    <button className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
-                      <Mail className="w-5 h-5" />
-                    </button>
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -125,15 +120,15 @@ const Leadership = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Leadership Philosophy</h2>
             <p className="text-white/60">
-              Our leadership team is committed to building a company that sets industry standards for integrity, accuracy, and client service.
+              Our leadership team is committed to building a company that sets standards for integrity, reliability, and client success.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: 'Client-First Approach', description: 'Every decision is made with our clients\' best interests in mind.' },
-              { title: 'Continuous Innovation', description: 'Embracing technology to deliver faster, more accurate services.' },
-              { title: 'Ethical Excellence', description: 'Maintaining the highest standards of integrity in all operations.' },
+              { title: 'Client-First Service', description: 'Every decision is made around outcomes, turnaround time, and measurable value.' },
+              { title: 'Continuous Improvement', description: 'Stronger processes, better tooling, and clearer reporting with every cycle.' },
+              { title: 'Quality & Integrity', description: 'We work ethically, follow defined checklists, and maintain confidentiality.' },
             ].map((item, index) => (
               <motion.div
                 key={item.title}

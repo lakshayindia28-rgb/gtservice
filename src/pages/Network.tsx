@@ -1,15 +1,40 @@
 import { motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
-import { MapPin, Users, Building, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Users, Building, CheckCircle, Shield, Smartphone } from 'lucide-react';
 
-const states = [
-  { name: 'Uttar Pradesh', agents: '150+', highlight: true, districts: 75 },
-  { name: 'Madhya Pradesh', agents: '80+', highlight: false, districts: 52 },
-  { name: 'Delhi NCR', agents: '50+', highlight: true, districts: 11 },
-  { name: 'Bihar', agents: '60+', highlight: false, districts: 38 },
-  { name: 'Jharkhand', agents: '40+', highlight: false, districts: 24 },
-  { name: 'Haryana', agents: '35+', highlight: false, districts: 22 },
-  { name: 'West Bengal', agents: '45+', highlight: true, districts: 23 },
+const coverage = [
+  { name: 'Uttar Pradesh', presence: 'Branch + Network', highlight: true, note: 'Lucknow / Sonbhadra' },
+  { name: 'Madhya Pradesh', presence: 'Network', highlight: false, note: 'Field coverage' },
+  { name: 'Delhi (NCR)', presence: 'Network', highlight: false, note: 'Client operations support' },
+  { name: 'Bihar', presence: 'Network', highlight: false, note: 'Field coverage' },
+  { name: 'Jharkhand', presence: 'Network', highlight: false, note: 'Field coverage' },
+  { name: 'Haryana', presence: 'Network', highlight: false, note: 'Field coverage' },
+  { name: 'West Bengal', presence: 'Branch + Network', highlight: true, note: 'Kolkata' },
+];
+
+const branches = [
+  {
+    title: 'Branch 1 — Lucknow (U.P.)',
+    details: [
+      'Office space of 1000 sq ft (17 seater), Dual ISP Broadband + lease line access.',
+      'Branch office: C2/86, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010',
+    ],
+  },
+  {
+    title: 'Branch 2 — Sonbhadra (U.P.)',
+    details: [
+      'Office space of 1000 sq ft (17 seater), ISP Broadband + lease line access.',
+      'MKS Building (2nd Floor), Civil Lines Road, Robertsganj, Sonbhadra, Uttar Pradesh 231216',
+    ],
+  },
+  {
+    title: 'Branch 3 — Kolkata (W.B.)',
+    details: [
+      'Office space of 1200 sq ft (25 seater), Dual ISP Broadband + lease line access.',
+      'Branch office: 16E, Mondal Temple Lane, New Alipore, Kolkata 700053, West Bengal',
+    ],
+  },
 ];
 
 const Network = () => {
@@ -30,11 +55,11 @@ const Network = () => {
               Our Network
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Pan-India{' '}
-              <span className="gradient-text">Verification Network</span>
+              Pan‑India{' '}
+              <span className="gradient-text">Field Network</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Our extensive field network spans across major states, ensuring quick and reliable verification services nationwide.
+              We operate through branch offices and a strong field network to deliver investigation, verification, and due diligence services — backed by IT‑enabled reporting.
             </p>
           </motion.div>
         </div>
@@ -45,10 +70,10 @@ const Network = () => {
         <div className="container mx-auto container-padding">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: MapPin, value: '7+', label: 'States Covered' },
-              { icon: Users, value: '500+', label: 'Field Agents' },
-              { icon: Building, value: '245+', label: 'Districts' },
-              { icon: CheckCircle, value: '1M+', label: 'Cases Completed' },
+              { icon: Building, value: '3', label: 'Branch Offices' },
+              { icon: MapPin, value: 'Multi‑State', label: 'Field Coverage' },
+              { icon: Smartphone, value: 'Real‑Time', label: 'Mobile Reporting' },
+              { icon: Shield, value: 'Secure', label: 'Server & Data Handling' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -87,13 +112,13 @@ const Network = () => {
                 {/* Map Pins */}
                 <div className="absolute inset-0 p-8">
                   {[
-                    { top: '15%', left: '45%', name: 'Delhi NCR' },
+                    { top: '15%', left: '45%', name: 'Delhi (NCR)' },
                     { top: '25%', left: '55%', name: 'Uttar Pradesh' },
                     { top: '35%', left: '35%', name: 'Madhya Pradesh' },
                     { top: '30%', left: '65%', name: 'Bihar' },
                     { top: '40%', left: '70%', name: 'Jharkhand' },
                     { top: '20%', left: '40%', name: 'Haryana' },
-                    { top: '45%', left: '80%', name: 'West Bengal' },
+                    { top: '45%', left: '80%', name: 'West Bengal (Kolkata)' },
                   ].map((location, index) => (
                     <motion.div
                       key={location.name}
@@ -122,7 +147,7 @@ const Network = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <h3 className="text-2xl font-bold text-primary">INDIA</h3>
-                    <p className="text-sm text-muted-foreground">Coverage Network</p>
+                    <p className="text-sm text-muted-foreground">Delivery Footprint</p>
                   </div>
                 </div>
               </div>
@@ -130,9 +155,9 @@ const Network = () => {
 
             {/* State List */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">States We Cover</h2>
+              <h2 className="text-2xl font-bold mb-6">Coverage Snapshot</h2>
               <div className="space-y-4">
-                {states.map((state, index) => (
+                {coverage.map((state, index) => (
                   <motion.div
                     key={state.name}
                     initial={{ opacity: 0, x: 30 }}
@@ -148,18 +173,58 @@ const Network = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold">{state.name}</h3>
-                          <p className="text-sm text-muted-foreground">{state.districts} Districts</p>
+                          <p className="text-sm text-muted-foreground">{state.note}</p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-bold text-primary">{state.agents}</div>
-                        <div className="text-xs text-muted-foreground">Agents</div>
+                        <div className="text-xl font-bold text-primary">{state.presence}</div>
+                        <div className="text-xs text-muted-foreground">Presence</div>
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Branches */}
+      <section className="section-padding">
+        <div className="container mx-auto container-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Infrastructure & Branches</h2>
+            <p className="text-muted-foreground mb-8">
+              Our branch offices are equipped for secure operations and quality reporting. We also execute pan‑India through an extended field network.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {branches.map((branch, index) => (
+              <motion.div
+                key={branch.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card-hover p-8"
+              >
+                <h3 className="text-lg font-semibold mb-4">{branch.title}</h3>
+                <div className="space-y-3">
+                  {branch.details.map((line) => (
+                    <div key={line} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-muted-foreground leading-relaxed">{line}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -175,11 +240,11 @@ const Network = () => {
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Expanding Our Reach</h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              We're continuously expanding our network to serve clients across India. Contact us for verification services in your region.
+              We continuously strengthen our field network and reporting systems. Contact us to confirm coverage, checklist scope, and turnaround time.
             </p>
-            <a href="/contact" className="btn-primary inline-block">
-              Check Coverage in Your Area
-            </a>
+            <Link to="/contact" className="btn-primary inline-block">
+              Talk to Our Team
+            </Link>
           </motion.div>
         </div>
       </section>

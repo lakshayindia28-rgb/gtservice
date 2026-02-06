@@ -8,9 +8,9 @@ const Footer = () => {
     { name: 'Investigation', path: '/services/investigation' },
     { name: 'Address Verification', path: '/services/address-verification' },
     { name: 'Employment Verification', path: '/services/employment-verification' },
-    { name: 'Bank Statement Verification', path: '/services/bank-statement-verification' },
-    { name: 'GST Verification', path: '/services/gst-verification' },
-    { name: 'Property Verification', path: '/services/property-verification' },
+    { name: 'RCU / FCU / FI / KYC', path: '/services/rcu-fcu-fi-kyc' },
+    { name: 'Product Design (UX/UI)', path: '/services/product-design' },
+    { name: 'Web Development', path: '/services/web-development' },
   ];
 
   const quickLinks = [
@@ -39,14 +39,14 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold">GUST TASK</h3>
-                <p className="text-xs text-white/60">Service Pvt. Ltd.</p>
+                <p className="text-xs text-white/60">Services Pvt. Ltd.</p>
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Delivering accurate risk intelligence, compliance & due diligence services across India with trusted verification solutions.
+              We maintain high standards of professional work culture and ethics. Services available on assignment or retainership (BPO) basis, delivered with secure and technology-first processes.
             </p>
             <div className="flex items-center gap-2 text-gold font-medium text-sm">
-              <span>24/7 Investigation Support</span>
+              <span>24×7 Technical Support</span>
               <ArrowRight className="w-4 h-4" />
             </div>
           </div>
@@ -92,19 +92,19 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <span className="text-white/60 text-sm">
-                  Head Office: Lucknow, Uttar Pradesh, India
+                  C2/86 Vibhuti Khand, Gomti Nagar, Lucknow – 226010
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <span className="text-white/60 text-sm">
-                  +91 XXXX XXXXXX
+                  8707615871 / 8858015871 / 5444297727
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <span className="text-white/60 text-sm">
-                  info@gusttask.com
+                  info@thegtservices.com
                 </span>
               </li>
             </ul>
@@ -114,7 +114,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
-            © {currentYear} Gust Task Service Private Limited. All rights reserved.
+            © {currentYear} Gust Task Services Private Limited. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="text-white/40 text-sm hover:text-white transition-colors">

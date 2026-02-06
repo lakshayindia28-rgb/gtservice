@@ -25,11 +25,11 @@ const CTA = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Ready to Partner with India's{' '}
-            <span className="text-gold">Trusted</span> Verification Experts?
+            Ready to Get Started with{' '}
+            <span className="text-gold">Trusted Services</span>?
           </h2>
           <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
-            Get in touch with us for customized verification solutions tailored to your business needs. Our team is available 24/7 for critical investigation support.
+            Investigation & verification services, due diligence, and technology-driven reporting — plus IT services like product design and software development when you need to build internal tools or customer apps.
           </p>
 
           {/* CTA Buttons */}
@@ -51,17 +51,17 @@ const CTA = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+            <a href="tel:+918707615871" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                 <Phone className="w-5 h-5" />
               </div>
-              <span>+91 XXXX XXXXXX</span>
+              <span>8707615871</span>
             </a>
-            <a href="mailto:info@gusttask.com" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+            <a href="mailto:info@thegtservices.com" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                 <Mail className="w-5 h-5" />
               </div>
-              <span>info@gusttask.com</span>
+              <span>info@thegtservices.com</span>
             </a>
           </div>
         </motion.div>

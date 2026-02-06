@@ -5,64 +5,76 @@ import { Building, Server, Smartphone, Shield, Lock, Wifi, Clock, FileCheck, Che
 const offices = [
   {
     city: 'Lucknow',
-    type: 'Head Office',
-    description: 'State-of-the-art facility housing our core operations, technology, and management teams.',
-    features: ['Central Operations Hub', 'Technology Center', 'Management Office'],
-  },
-  {
-    city: 'Kolkata',
-    type: 'Regional Office',
-    description: 'Eastern region operations center managing verification across West Bengal and neighboring states.',
-    features: ['Regional Operations', 'Field Coordination', 'Quality Control'],
+    type: 'Branch Office (U.P.)',
+    description: 'Office infrastructure in a central locality of Lucknow supporting verification operations.',
+    features: [
+      'Office space: 1000 sq ft (17 seater)',
+      'Connectivity: Dual ISP Broadband + lease line access',
+      'Address: C2/86, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010',
+    ],
   },
   {
     city: 'Sonbhadra',
-    type: 'Branch Office',
-    description: 'Dedicated branch for local operations and field agent coordination in the region.',
-    features: ['Field Operations', 'Local Coordination', 'Agent Training'],
+    type: 'Branch Office (U.P.)',
+    description: 'Operations setup supporting verification delivery in Sonbhadra region.',
+    features: [
+      'Office space: 1000 sq ft (17 seater)',
+      'Connectivity: ISP Broadband + lease line access',
+      'Address: MKS Building (2nd Floor), Civil Lines Road, Robertsganj, Sonbhadra, Uttar Pradesh 231216',
+    ],
+  },
+  {
+    city: 'Kolkata',
+    type: 'Branch Office (W.B.)',
+    description: 'Kolkata branch supporting verification operations with secure infrastructure and connectivity.',
+    features: [
+      'Office space: 1200 sq ft (25 seater)',
+      'Connectivity: Dual ISP Broadband + lease line access',
+      'Address: 16E, Mondal Temple Lane, New Alipore, Kolkata 700053, West Bengal',
+    ],
   },
 ];
 
 const techFeatures = [
   {
     icon: Smartphone,
-    title: 'Mobile App-Based Verification',
-    description: 'Our proprietary mobile application enables field agents to capture geotagged photos, GPS coordinates, and real-time data during verifications.',
+    title: 'Mobile Application Software',
+    description: 'Our field staff perform verification using our own mobile application which captures photographs and supports real-time reporting.',
   },
   {
     icon: Wifi,
-    title: 'Real-Time Tracking',
-    description: 'Track verification progress in real-time with live updates, instant notifications, and comprehensive dashboards.',
+    title: 'Google Map & Tracking',
+    description: 'Map-enabled tracking supports monitoring of verifier movements throughout the day as per operational requirements.',
   },
   {
     icon: Server,
     title: 'Secure Servers',
-    description: 'Enterprise-grade servers with 99.9% uptime, regular backups, and disaster recovery protocols.',
+    description: 'All details are highly secured as we use our own server for data handling and reporting workflows.',
   },
   {
     icon: Lock,
-    title: 'Data Security',
-    description: 'End-to-end encryption, secure data transmission, and compliance with data protection standards.',
+    title: 'Controlled Access',
+    description: 'Operational access controls and confidentiality-focused handling of verification data and reports.',
   },
   {
     icon: FileCheck,
     title: 'Licensed Software',
-    description: 'All software and tools used are properly licensed and compliant with legal requirements.',
+    description: 'We use only legal software which is fully licensed and certified, helping reduce downtime and business risks.',
   },
   {
     icon: Clock,
-    title: '24/7 System Availability',
-    description: 'Round-the-clock system availability ensuring uninterrupted service delivery for critical verifications.',
+    title: 'Operational Continuity',
+    description: 'Reliable connectivity and systems that support daily verification execution and timely reporting.',
   },
 ];
 
 const securityItems = [
-  'ISO 27001 compliant data handling',
-  'End-to-end encryption for all data',
-  'Regular security audits and penetration testing',
-  'Strict access controls and authentication',
-  'Compliance with RBI and data protection guidelines',
-  'Secure document storage and destruction protocols',
+  'Own server for secured data handling and reporting',
+  'Mobile app based field reporting with photo capture',
+  'Map-enabled tracking support for field operations',
+  'Licensed and certified software usage',
+  'Confidentiality-focused handling of client information',
+  'Reliable connectivity at branch offices (Broadband + lease line where available)',
 ];
 
 const Infrastructure = () => {
@@ -83,11 +95,11 @@ const Infrastructure = () => {
               Infrastructure & IT
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Robust Infrastructure for{' '}
-              <span className="gradient-text">Reliable Verification</span>
+              Infrastructure &{' '}
+              <span className="gradient-text">IT Practices</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Our technology-driven infrastructure ensures accurate, secure, and timely verification services across India.
+              Branch offices, connectivity, and IT-enabled reporting that support investigation, verification, and due diligence operations.
             </p>
           </motion.div>
         </div>
@@ -104,7 +116,7 @@ const Infrastructure = () => {
           >
             <h2 className="text-3xl font-bold mb-4">Office Infrastructure</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Strategic office locations ensuring efficient operations and quick response times.
+              Branch offices with seating capacity and connectivity to support field operations and reporting.
             </p>
           </motion.div>
 
@@ -152,7 +164,7 @@ const Infrastructure = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">IT Infrastructure & Security</h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              Cutting-edge technology powering secure and efficient verification processes.
+              IT-enabled verification operations with real-time reporting, tracking support, and secure server handling.
             </p>
           </motion.div>
 
@@ -190,10 +202,10 @@ const Infrastructure = () => {
                 Security & Compliance
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Enterprise-Grade <span className="gradient-text-gold">Security Standards</span>
+                Security & <span className="gradient-text-gold">IT Practices</span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                We maintain the highest security standards to protect sensitive client data and ensure regulatory compliance across all operations.
+                We understand the importance of IT practices in verification operations and focus on secure handling, licensed software, and reliable reporting workflows.
               </p>
 
               <div className="space-y-4">
@@ -217,22 +229,22 @@ const Infrastructure = () => {
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-sky flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-center mb-4">Data Security Promise</h3>
+              <h3 className="text-2xl font-bold text-center mb-4">Delivery Readiness</h3>
               <p className="text-center text-muted-foreground mb-6">
-                Your data is protected with industry-leading security measures. We never share client information and maintain strict confidentiality protocols.
+                We support operations with controlled processes and IT-enabled reporting, focused on confidentiality and continuity.
               </p>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-primary">256-bit</div>
-                  <div className="text-xs text-muted-foreground">Encryption</div>
+                  <div className="text-2xl font-bold text-primary">Mobile</div>
+                  <div className="text-xs text-muted-foreground">Reporting</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-primary">99.9%</div>
-                  <div className="text-xs text-muted-foreground">Uptime</div>
+                  <div className="text-2xl font-bold text-primary">Own</div>
+                  <div className="text-xs text-muted-foreground">Server</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-primary">24/7</div>
-                  <div className="text-xs text-muted-foreground">Monitoring</div>
+                  <div className="text-2xl font-bold text-primary">Licensed</div>
+                  <div className="text-xs text-muted-foreground">Software</div>
                 </div>
               </div>
             </motion.div>

@@ -3,12 +3,12 @@ import Layout from '@/components/layout/Layout';
 import { Target, Eye, Award, Users, Building, Clock, CheckCircle } from 'lucide-react';
 
 const milestones = [
-  { year: '2015', title: 'Company Founded', description: 'Started operations in Lucknow with a small team of dedicated investigators.' },
-  { year: '2017', title: 'Pan-North India Expansion', description: 'Extended our network to cover Uttar Pradesh, Bihar, and Jharkhand.' },
-  { year: '2019', title: 'Technology Integration', description: 'Launched mobile app-based verification with real-time tracking.' },
-  { year: '2021', title: 'BPO Services Launch', description: 'Introduced retainer-based BPO services for banking clients.' },
-  { year: '2023', title: '1 Million Cases', description: 'Crossed the milestone of 1 million successful verifications.' },
-  { year: '2024', title: 'National Presence', description: 'Expanded operations to 7+ states with 500+ field agents.' },
+  { year: '01', title: 'Work Culture & Ethics', description: 'We maintain high standards of professional work culture and ethics.' },
+  { year: '02', title: 'Flexible Delivery Model', description: 'Services available on assignment or retainership (Business Process Outsourcing) basis.' },
+  { year: '03', title: 'On-site + Office Execution', description: 'We execute work at client sites as well as in our office — based on requirements.' },
+  { year: '04', title: 'Verification Services', description: 'Investigation, address, employment, bank statement, Form-16, business, GST, ITR, property verification, RCU/FCU/FI/KYC, taxation and valuation.' },
+  { year: '05', title: 'IT-Enabled Reporting', description: 'Mobile app-based reporting with photo capture, Google map tracking, and secure private servers.' },
+  { year: '06', title: 'IT Services & Product Support', description: 'We also help build secure tools, portals, and dashboards (product design + IT services) when clients need technology support.' },
 ];
 
 const values = [
@@ -37,13 +37,19 @@ const About = () => {
               About Us
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Building Trust Through{' '}
-              <span className="gradient-text">Verified Intelligence</span>
+              GUST TASK SERVICES{' '}
+              <span className="gradient-text">PRIVATE LIMITED</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Gust Task Service Private Limited is a leading investigation and verification company 
-              delivering accurate risk intelligence, compliance, and due diligence services across India. 
-              We serve banks, NBFCs, insurance companies, and corporate clients with integrity and precision.
+              We are maintaining high standards of professional work culture and ethics.
+              We execute work on the sites of client as well as in our office.
+              Our services are available on assignment or on retainership (Business Process Outsourcing) basis or to be as independent
+              professionals of the client companies.
+              <br />
+              <br />
+              Along with investigation and verification services, our delivery is supported by IT infrastructure and secure reporting.
+              We also provide IT services (including product design and software development) when clients need internal tools,
+              dashboards, portals, or workflow systems.
             </p>
           </motion.div>
         </div>
@@ -64,9 +70,8 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-muted-foreground leading-relaxed">
-                To provide reliable, accurate, and timely verification services that help our clients 
-                make informed decisions, mitigate risks, and maintain regulatory compliance through 
-                ethical investigation practices.
+                To provide reliable, accurate, and timely investigation and verification services that help our clients make informed decisions,
+                mitigate risks, and maintain compliance through ethical execution.
               </p>
             </motion.div>
 
@@ -81,9 +86,8 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
               <p className="text-muted-foreground leading-relaxed">
-                To be India's most trusted partner in risk intelligence, setting industry benchmarks 
-                for accuracy, turnaround time, and customer satisfaction while expanding our 
-                nationwide network and technological capabilities.
+                To be a trusted partner for verified intelligence and technology-enabled delivery — setting benchmarks for quality,
+                turnaround time (TAT), and client satisfaction.
               </p>
             </motion.div>
           </div>
@@ -107,9 +111,9 @@ const About = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Building, title: 'Professional Environment', description: 'Modern offices in Lucknow, Kolkata, and Sonbhadra with state-of-the-art facilities.' },
-              { icon: Clock, title: 'BPO & Retainer Services', description: 'Dedicated teams for retainer clients ensuring consistent quality and quick TAT.' },
-              { icon: CheckCircle, title: 'Quality First', description: 'Multi-tier quality checks and compliance audits for every verification.' },
+              { icon: Building, title: 'Professional Environment', description: 'We execute work at client sites as well as from our offices with clear SOPs.' },
+              { icon: Clock, title: 'BPO & Retainer Services', description: 'Dedicated teams for retainership clients ensuring consistent quality and quick TAT.' },
+              { icon: CheckCircle, title: 'Quality First', description: 'Training and multi-step checks to keep quality high and reduce rework.' },
             ].map((item, index) => (
               <motion.div
                 key={item.title}
@@ -145,7 +149,7 @@ const About = () => {
               Our Journey
             </span>
             <h2 className="text-3xl md:text-4xl font-bold">
-              Building Excellence <span className="gradient-text-gold">Since 2015</span>
+              How We Work <span className="gradient-text-gold">End-to-End</span>
             </h2>
           </motion.div>
 

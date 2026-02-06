@@ -9,86 +9,93 @@ const services = [
   {
     icon: Search,
     title: 'Investigation',
-    description: 'Comprehensive investigation services for fraud detection and risk assessment.',
+    description: 'Careful examination to discover the truth — supporting risk decisions and fraud prevention.',
     path: '/services/investigation',
     color: 'from-primary to-sky',
   },
   {
     icon: MapPin,
     title: 'Address Verification',
-    description: 'Accurate physical and permanent address verification across India.',
+    description: 'On-ground address visit with document checks and neighbor confirmation.',
     path: '/services/address-verification',
     color: 'from-sky to-sky-light',
   },
   {
     icon: Briefcase,
     title: 'Employment Verification',
-    description: 'Thorough employment history and credential verification.',
+    description: 'Office visit + colleague confirmation to validate employment and salary credit patterns.',
     path: '/services/employment-verification',
     color: 'from-primary to-navy-light',
   },
   {
     icon: FileText,
     title: 'Bank Statement Verification',
-    description: 'Detailed analysis and verification of financial documents.',
+    description: 'Validate account transactions and authenticity through banking checks as required.',
     path: '/services/bank-statement-verification',
     color: 'from-gold to-gold-light',
   },
   {
+    icon: FileCheck,
+    title: 'Form-16 Verification',
+    description: 'Check authenticity and validity to support accurate filing and loan applications.',
+    path: '/services/form-16-verification',
+    color: 'from-navy to-primary',
+  },
+  {
     icon: Building2,
     title: 'Business Verification',
-    description: 'Complete business entity verification and due diligence.',
+    description: 'Site visit and business analysis based on stock, activity, and transactions.',
     path: '/services/business-verification',
-    color: 'from-navy to-primary',
+    color: 'from-sky-light to-sky',
   },
   {
     icon: Receipt,
     title: 'GST Verification',
-    description: 'GST registration and compliance verification services.',
+    description: 'Validate GSTIN authenticity for safer vendor and business transactions.',
     path: '/services/gst-verification',
-    color: 'from-sky-light to-sky',
+    color: 'from-primary to-sky',
   },
   {
     icon: FileCheck,
     title: 'ITR Verification',
-    description: 'Income tax return verification and validation.',
+    description: 'Verify ITR filing acknowledgement and reported income details for assessment.',
     path: '/services/itr-verification',
-    color: 'from-primary to-sky',
+    color: 'from-gold to-gold-light',
   },
   {
     icon: Home,
     title: 'Property Verification',
-    description: 'Property ownership and title verification services.',
+    description: 'Confirm legal status and legitimacy before buying, selling, or transfer.',
     path: '/services/property-verification',
-    color: 'from-gold to-gold-light',
-  },
-  {
-    icon: Scale,
-    title: 'Property Valuation',
-    description: 'Professional property valuation and assessment.',
-    path: '/services/property-valuation',
     color: 'from-navy-light to-primary',
   },
   {
     icon: Users,
     title: 'RCU / FCU / FI / KYC',
-    description: 'Risk containment, fraud control, and KYC verification.',
+    description: 'FI, CPV, due diligence, and risk activities for BFSI and enterprise clients.',
     path: '/services/rcu-fcu-fi-kyc',
     color: 'from-sky to-primary',
   },
   {
     icon: Calculator,
-    title: 'Taxation Services',
-    description: 'Comprehensive taxation and compliance services.',
+    title: 'Taxation & Compliance',
+    description: 'GST/ITR filing support, EPF registration & filing, and related compliance work.',
     path: '/services/taxation',
     color: 'from-gold-light to-gold',
   },
   {
-    icon: FileCheck,
-    title: 'Form-16 Verification',
-    description: 'Employment income and Form-16 validation services.',
-    path: '/services/form-16-verification',
+    icon: Scale,
+    title: 'Property Valuation',
+    description: 'Fair market value assessment based on location, condition, and market trends.',
+    path: '/services/property-valuation',
     color: 'from-primary to-navy',
+  },
+  {
+    icon: FileText,
+    title: 'IT Services & Product Design',
+    description: 'Secure reporting apps, dashboards, portals, and workflows to strengthen delivery and CX.',
+    path: '/contact',
+    color: 'from-primary to-sky',
   },
 ];
 
@@ -113,11 +120,11 @@ const Services = () => {
             Our Services
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Comprehensive Verification{' '}
-            <span className="gradient-text">Solutions</span>
+            Comprehensive{' '}
+            <span className="gradient-text">Service Portfolio</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            From investigation to compliance, we provide end-to-end verification services designed for modern enterprises.
+            Investigation, verification, due diligence, and compliance support — backed by IT-enabled processes and product capabilities when you need secure tools and reporting.
           </p>
         </motion.div>
 

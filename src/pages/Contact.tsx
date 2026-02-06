@@ -10,21 +10,18 @@ import { useToast } from '@/hooks/use-toast';
 const offices = [
   {
     city: 'Lucknow',
-    type: 'Head Office',
-    address: 'Lucknow, Uttar Pradesh, India',
-    phone: '+91 XXXX XXXXXX',
-  },
-  {
-    city: 'Kolkata',
-    type: 'Regional Office',
-    address: 'Kolkata, West Bengal, India',
-    phone: '+91 XXXX XXXXXX',
+    type: 'Branch 1',
+    address: 'C2/86, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010',
   },
   {
     city: 'Sonbhadra',
-    type: 'Branch Office',
-    address: 'Sonbhadra, Uttar Pradesh, India',
-    phone: '+91 XXXX XXXXXX',
+    type: 'Branch 2',
+    address: 'MKS Building (2nd Floor), Civil Lines Road, Robertsganj, Sonbhadra, Uttar Pradesh 231216',
+  },
+  {
+    city: 'Kolkata',
+    type: 'Branch 3',
+    address: '16E, Mondal Temple Lane, New Alipore, Kolkata 700053, West Bengal',
   },
 ];
 
@@ -43,7 +40,7 @@ const Contact = () => {
     e.preventDefault();
     toast({
       title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      description: "We'll get back to you soon.",
     });
     setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
   };
@@ -65,11 +62,11 @@ const Contact = () => {
               Contact Us
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Get in Touch with{' '}
-              <span className="gradient-text">Our Experts</span>
+              Contact{' '}
+              <span className="gradient-text">GUST TASK</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Have questions about our services? Our team is available 24/7 for critical investigation support.
+              Share your verification requirements, checklist scope, and expected turnaround time. We also support IT services and product design for operations and reporting systems.
             </p>
           </motion.div>
         </div>
@@ -144,10 +141,30 @@ const Contact = () => {
                     <option value="investigation">Investigation</option>
                     <option value="address-verification">Address Verification</option>
                     <option value="employment-verification">Employment Verification</option>
-                    <option value="bank-statement">Bank Statement Verification</option>
-                    <option value="property">Property Verification & Valuation</option>
-                    <option value="rcu-fcu">RCU / FCU / FI / KYC</option>
-                    <option value="other">Other Services</option>
+                    <option value="bank-statement-verification">Bank Statement Verification</option>
+                    <option value="form-16-verification">Form-16 Verification</option>
+                    <option value="business-verification">Business Verification</option>
+                    <option value="gst-verification">GST Verification</option>
+                    <option value="itr-verification">ITR Verification</option>
+                    <option value="property-verification">Property Verification</option>
+                    <option value="property-valuation">Property Valuation</option>
+                    <option value="rcu-fcu-fi-kyc">RCU / FCU / FI / KYC</option>
+                    <option value="taxation">Taxation & Compliance</option>
+                    <option value="tin-facilitation">TIN Facilitation Services</option>
+                    <option value="additional-services">Additional Verification Services</option>
+                    <option value="product-discovery">Product Discovery (IT)</option>
+                    <option value="product-design">Product Design (UX/UI)</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="mobile-app-development">Mobile App Development</option>
+                    <option value="custom-software">Custom Software</option>
+                    <option value="cloud-devops">Cloud & DevOps</option>
+                    <option value="qa-testing">QA & Testing</option>
+                    <option value="data-ai">Data & AI</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                    <option value="support-maintenance">Support & Maintenance</option>
+                    <option value="dedicated-teams">Dedicated Teams</option>
+                    <option value="api-integrations">API & Integrations</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
 
@@ -157,7 +174,7 @@ const Contact = () => {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your requirements..."
+                    placeholder="Tell us about your requirements (scope, checklist, locations, TAT)..."
                     rows={5}
                     className="bg-white/50"
                   />
@@ -181,22 +198,22 @@ const Contact = () => {
               <div className="glass-card p-6">
                 <h3 className="text-lg font-semibold mb-4">Quick Contact</h3>
                 <div className="space-y-4">
-                  <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
+                  <a href="tel:+918707615871" className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Phone</p>
-                      <p className="font-medium">+91 XXXX XXXXXX</p>
+                      <p className="font-medium">8707615871 / 8858015871 / 5444297727</p>
                     </div>
                   </a>
-                  <a href="mailto:info@gusttask.com" className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
+                  <a href="mailto:info@thegtservices.com" className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Email</p>
-                      <p className="font-medium">info@gusttask.com</p>
+                      <p className="font-medium">info@thegtservices.com</p>
                     </div>
                   </a>
                   <div className="flex items-center gap-4 p-3">
@@ -205,8 +222,24 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Support</p>
-                      <p className="font-medium">24/7 Investigation Support</p>
+                      <p className="font-medium">Business Hours</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Registered Address */}
+              <div className="glass-card p-6">
+                <h3 className="text-lg font-semibold mb-4">Registered Address</h3>
+                <div className="flex items-start gap-4 p-3 rounded-lg bg-secondary/30">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Lucknow, Uttar Pradesh</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      C2/86, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010
+                    </p>
                   </div>
                 </div>
               </div>
@@ -235,10 +268,10 @@ const Contact = () => {
                 <h3 className="text-lg font-semibold mb-4">Why Choose Us?</h3>
                 <div className="space-y-3">
                   {[
-                    '24/7 critical investigation support',
-                    'Quick turnaround time (24-48 hours)',
-                    'Pan-India network coverage',
-                    'Compliance-first approach',
+                    'Ethical work culture and confidentiality focus',
+                    'Assignment / retainership (BPO) delivery model',
+                    'Field + office execution with standardized checklists',
+                    'IT-enabled real-time reporting and secure server handling',
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />

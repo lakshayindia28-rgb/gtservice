@@ -4,45 +4,45 @@ import { Shield, Clock, Users, Award, CheckCircle, TrendingUp } from 'lucide-rea
 const features = [
   {
     icon: Shield,
-    title: 'Trusted Expertise',
-    description: 'Over a decade of experience in investigation and verification services across India.',
-    stat: '10+',
-    statLabel: 'Years Experience',
+    title: 'Professional Ethics',
+    description: 'High standards of professional work culture and ethics in every assignment.',
+    stat: '100%',
+    statLabel: 'Integrity',
   },
   {
     icon: Clock,
-    title: 'Quick Turnaround',
-    description: 'Fast and efficient processing with industry-leading turnaround times.',
-    stat: '24-48',
-    statLabel: 'Hours TAT',
+    title: 'Quality & TAT Focus',
+    description: 'Training and motivational sessions at regular intervals to maintain quality and turnaround time.',
+    stat: 'TAT',
+    statLabel: 'Driven',
   },
   {
     icon: Users,
-    title: 'Pan-India Network',
-    description: 'Extensive field network covering all major states and districts.',
-    stat: '500+',
-    statLabel: 'Field Agents',
+    title: 'Assignment or Retainer (BPO)',
+    description: 'Services available on assignment basis or retainership (Business Process Outsourcing).',
+    stat: 'BPO',
+    statLabel: 'Ready',
   },
   {
     icon: Award,
-    title: 'Compliance First',
-    description: 'All processes adhere to regulatory standards and compliance requirements.',
-    stat: '100%',
-    statLabel: 'Compliant',
+    title: 'On-site + Office Execution',
+    description: 'We execute work on client sites as well as in our office — as per requirement.',
+    stat: 'Hybrid',
+    statLabel: 'Delivery',
   },
   {
     icon: CheckCircle,
-    title: 'Accuracy Guaranteed',
-    description: 'Rigorous quality checks ensure highest accuracy in all verifications.',
-    stat: '99.5%',
-    statLabel: 'Accuracy Rate',
+    title: 'Mobile App Reporting',
+    description: 'Real-time reporting with photo capture and Google map tracking for 100% monitoring.',
+    stat: 'Live',
+    statLabel: 'Tracking',
   },
   {
     icon: TrendingUp,
-    title: 'Scalable Solutions',
-    description: 'From single verifications to bulk processing, we scale with your needs.',
-    stat: '1M+',
-    statLabel: 'Verifications',
+    title: 'Secure IT Practices',
+    description: 'Secure private servers and only licensed/certified software for operational continuity.',
+    stat: '24×7',
+    statLabel: 'Support',
   },
 ];
 
@@ -66,26 +66,25 @@ const WhyChooseUs = () => {
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               Your Partner in{' '}
-              <span className="gradient-text-gold">Risk Intelligence</span>
+              <span className="gradient-text-gold">Verified Intelligence</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We combine technology-driven processes with on-ground expertise to deliver 
-              verification services that banks, NBFCs, and corporations trust.
+              We deliver investigation and verification with a disciplined operating model — supported by IT infrastructure for secure, trackable, and auditable reporting.
             </p>
 
             {/* Stats Highlight */}
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center p-4 rounded-xl bg-primary/5">
-                <div className="text-3xl font-bold text-primary mb-1">500+</div>
-                <div className="text-xs text-muted-foreground">Clients</div>
+                <div className="text-3xl font-bold text-primary mb-1">On-site</div>
+                <div className="text-xs text-muted-foreground">Execution</div>
               </div>
               <div className="text-center p-4 rounded-xl bg-gold/5">
-                <div className="text-3xl font-bold text-gold mb-1">7+</div>
-                <div className="text-xs text-muted-foreground">States</div>
+                <div className="text-3xl font-bold text-gold mb-1">BPO</div>
+                <div className="text-xs text-muted-foreground">Retainer Model</div>
               </div>
               <div className="text-center p-4 rounded-xl bg-sky/5">
-                <div className="text-3xl font-bold text-sky mb-1">1M+</div>
-                <div className="text-xs text-muted-foreground">Cases</div>
+                <div className="text-3xl font-bold text-sky mb-1">Live</div>
+                <div className="text-xs text-muted-foreground">Reporting</div>
               </div>
             </div>
           </motion.div>

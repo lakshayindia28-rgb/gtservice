@@ -7,25 +7,25 @@ const industries = [
     icon: Landmark,
     title: 'Banks & NBFCs',
     description: 'Pre-disbursement verification, fraud investigation, and compliance support for lending institutions.',
-    features: ['Loan Verification', 'Document Authentication', 'Field Investigation'],
+    features: ['FI / CPV', 'RCU / FCU', 'Due Diligence'],
   },
   {
     icon: Shield,
     title: 'Insurance Companies',
     description: 'Claims investigation, policy verification, and fraud detection services.',
-    features: ['Claims Investigation', 'Policy Verification', 'Risk Assessment'],
+    features: ['Claims', 'Policy Checks', 'Risk Assessment'],
   },
   {
     icon: Building,
     title: 'Corporate Sector',
     description: 'Employee background verification, vendor due diligence, and corporate investigations.',
-    features: ['BGV Services', 'Vendor Verification', 'Corporate Fraud'],
+    features: ['BGV', 'Vendor Verification', 'Compliance'],
   },
   {
     icon: Users,
     title: 'Risk & Due Diligence',
-    description: 'Comprehensive risk assessment and due diligence for investment and partnership decisions.',
-    features: ['Partner Screening', 'Investment Due Diligence', 'Compliance Audits'],
+    description: 'Risk assessment and due diligence support for partnerships and business decisions.',
+    features: ['Screening', 'Audits', 'Reporting'],
   },
 ];
 
@@ -58,7 +58,7 @@ const Industries = () => {
             <span className="text-sky">Enterprises</span>
           </h2>
           <p className="text-lg text-white/60">
-            Our verification services cater to diverse industry verticals with specialized solutions.
+            We support BFSI and enterprises with verification, investigation, and due diligence — backed by secure, IT-enabled reporting.
           </p>
         </motion.div>
 
