@@ -1,6 +1,6 @@
 # Deployment (Vultr Ubuntu 22.04 + Nginx)
 
-This project is a Vite + React SPA. Recommended deployment is: build the static site (`dist/`) and serve it with Nginx.
+This project is a Vite + React SPA. Deployment approach here: build on the Vultr server (`npm ci` + `npm run build`) and serve the generated `dist/` with Nginx.
 
 Target domain: `https://thegtservices.com/`
 Repo: `https://github.com/lakshayindia28-rgb/gtservice.git`
@@ -25,19 +25,25 @@ node -v
 npm -v
 ```
 
-## 2) Get the code and build
+## 2) Get the code and build (on the server)
 
 ```bash
 sudo mkdir -p /var/www/thegtservices
 sudo chown -R $USER:$USER /var/www/thegtservices
 
 cd /var/www/thegtservices
-git clone https://github.com/lakshayindia28-rgb/gtservice.git .
+git clone https://github.com/lakshayindia28-rgb/gtservice.git app
+
+cd /var/www/thegtservices/app
 npm ci
 npm run build
+
+# Publish build output to the Nginx web root
+sudo mkdir -p /var/www/thegtservices/dist
+sudo rsync -az --delete dist/ /var/www/thegtservices/dist/
 ```
 
-After build, your static site is in `dist/`.
+After build, Nginx should serve: `/var/www/thegtservices/dist`.
 
 ## 3) Nginx config (SPA-safe)
 
@@ -101,67 +107,25 @@ Certbot will update your Nginx config and set up auto-renewal.
 Pull changes, rebuild, reload Nginx:
 
 ```bash
-cd /var/www/thegtservices
+cd /var/www/thegtservices/app
 git pull
 npm ci
 npm run build
+sudo rsync -az --delete dist/ /var/www/thegtservices/dist/
 sudo systemctl reload nginx
 ```
 
-## Optional: GitHub Actions auto-deploy (recommended)
+## Optional: One-command deploy script
 
-This repo includes a workflow that:
+This repo includes a helper script you can run on the server:
 
-- Builds the app on GitHub Actions
-- Uploads `dist/` to your Vultr server via `rsync` over SSH
+- `scripts/deploy-on-server.sh`
 
-Workflow file: `.github/workflows/deploy-vultr.yml`
-
-### One-time server setup
-
-1) Make sure Nginx root points to the same folder you deploy into.
-
-If you use the workflow defaults below, set:
-
-```nginx
-root /var/www/thegtservices/dist;
-```
-
-2) Ensure the deploy path exists and Nginx can read it:
+Usage:
 
 ```bash
-sudo mkdir -p /var/www/thegtservices/dist
-sudo chown -R www-data:www-data /var/www/thegtservices
-sudo chmod -R 755 /var/www/thegtservices
+sudo bash /var/www/thegtservices/app/scripts/deploy-on-server.sh
 ```
-
-Note: If you deploy as `root`, ownership isn’t required, but it’s cleaner to deploy with a non-root user.
-
-### GitHub Secrets to add
-
-Go to: **GitHub repo → Settings → Secrets and variables → Actions → New repository secret**
-
-Add these secrets:
-
-- `VULTR_HOST`: `65.20.83.83`
-- `VULTR_SSH_USER`: `root` (or your deploy user)
-- `VULTR_SSH_PORT`: `22`
-- `VULTR_DEPLOY_PATH`: `/var/www/thegtservices/dist`
-- `VULTR_SSH_PRIVATE_KEY`: your SSH private key (the one matching the public key installed on the server)
-- `VULTR_KNOWN_HOSTS`: the server host key entry (recommended for secure SSH)
-
-To generate `VULTR_KNOWN_HOSTS` locally:
-
-```bash
-ssh-keyscan -H 65.20.83.83
-```
-
-Copy the entire output line(s) into the secret value.
-
-### Triggering a deploy
-
-- Any push to `main` triggers deploy automatically
-- Or run it manually from **Actions → Deploy to Vultr (thegtservices.com) → Run workflow**
 
 ## Notes
 
