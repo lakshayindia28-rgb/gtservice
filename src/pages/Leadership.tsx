@@ -36,7 +36,7 @@ const leaders = [
     expertise: ['Risk Management', 'Verification Ops', 'Execution'],
   },
   {
-    name: 'Vishal Pandey',
+    name: 'Mr. Vishal Pandey',
     role: 'CTO / IT Head',
     photo: vishalPhoto,
     photoFit: 'contain',
@@ -45,7 +45,7 @@ const leaders = [
     expertise: ['IT Infrastructure', 'Mobile App Reporting', 'Secure Systems'],
   },
   {
-    name: 'Mrs. Ritika Thakur',
+    name: 'Ritika Thakur',
     role: 'Operation Head',
     photo: ritikaPhoto,
     photoFit: 'cover',
