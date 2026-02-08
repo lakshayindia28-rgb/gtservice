@@ -27,6 +27,18 @@ npm -v
 
 ## 2) Get the code and build (on the server)
 
+Create env file (required for Contact form email):
+
+```bash
+cd /var/www/thegtservices/app
+cp .env.example .env
+sudo nano .env
+```
+
+Set:
+
+- `VITE_WEB3FORMS_ACCESS_KEY=...`
+
 ```bash
 sudo mkdir -p /var/www/thegtservices
 sudo chown -R $USER:$USER /var/www/thegtservices

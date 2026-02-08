@@ -27,6 +27,7 @@ const offices = [
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,13 +37,69 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
+    if (!accessKey) {
+      toast({
+        title: 'Email not configured',
+        description: 'Please set VITE_WEB3FORMS_ACCESS_KEY on the server and redeploy.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    const serviceLabel = formData.service
+      ? formData.service
+          .split('-')
+          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(' ')
+      : 'Not selected';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Contact Form Submission — ${formData.name}`,
+          from_name: 'thegtservices.com',
+          replyto: formData.email,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: serviceLabel,
+          message: formData.message,
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null;
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || 'Failed to send message');
+      }
+
+      toast({
+        title: 'Message Sent!',
+        description: "We'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+    } catch (err) {
+      toast({
+        title: 'Failed to send message',
+        description: err instanceof Error ? err.message : 'Please try again in a moment.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -180,9 +237,9 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" className="w-full btn-primary">
+                <Button type="submit" className="w-full btn-primary" disabled={isSubmitting}>
                   <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </motion.div>
