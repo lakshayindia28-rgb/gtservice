@@ -9,6 +9,8 @@ set -euo pipefail
 APP_DIR="/var/www/thegtservices/app"
 DIST_DIR="/var/www/thegtservices/dist"
 
+BUILD_DIR="$APP_DIR"
+
 if [[ ! -d "$APP_DIR/.git" ]]; then
   echo "ERROR: Repo not found at $APP_DIR"
   echo "Clone it first: sudo git clone https://github.com/lakshayindia28-rgb/gtservice.git $APP_DIR"
@@ -19,6 +21,17 @@ cd "$APP_DIR"
 
 echo "== Pull latest =="
 git pull
+
+if [[ -f "$APP_DIR/package.json" ]]; then
+  BUILD_DIR="$APP_DIR"
+elif [[ -f "$APP_DIR/clarity-sphere-lab/package.json" ]]; then
+  BUILD_DIR="$APP_DIR/clarity-sphere-lab"
+else
+  echo "ERROR: Could not find package.json in $APP_DIR or $APP_DIR/clarity-sphere-lab"
+  exit 1
+fi
+
+cd "$BUILD_DIR"
 
 echo "== Install deps =="
 npm ci

@@ -34,7 +34,7 @@ sudo chown -R $USER:$USER /var/www/thegtservices
 cd /var/www/thegtservices
 git clone https://github.com/lakshayindia28-rgb/gtservice.git app
 
-cd /var/www/thegtservices/app
+cd /var/www/thegtservices/app/clarity-sphere-lab
 npm ci
 npm run build
 
@@ -109,6 +109,7 @@ Pull changes, rebuild, reload Nginx:
 ```bash
 cd /var/www/thegtservices/app
 git pull
+cd /var/www/thegtservices/app/clarity-sphere-lab
 npm ci
 npm run build
 sudo rsync -az --delete dist/ /var/www/thegtservices/dist/
