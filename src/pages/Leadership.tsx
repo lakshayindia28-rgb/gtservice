@@ -12,6 +12,7 @@ const leaders = [
     name: 'Mr. Ajay Kumar Pathak',
     role: 'Chief Managing Director',
     photo: ajayPhoto,
+    photoObjectPosition: 'object-center',
     description: 'Leads the organization with a focus on risk management, KYC assignments, due diligence, prudential checks, and background verification operations.',
     expertise: ['Risk Management', 'KYC / Due Diligence', 'Background Verification'],
   },
@@ -19,13 +20,15 @@ const leaders = [
     name: 'Mr. Ram Sevak Shukla',
     role: 'Director',
     photo: ramSevakPhoto,
+    photoObjectPosition: 'object-top',
     description: 'B.Tech (Civil) and extensive experience in engineering leadership roles, supporting governance and operational discipline.',
-    expertise: ['Leadership', 'Operations Discipline', 'Governance'],
+    expertise: ['Leadership', 'Property Valuation', 'Governance'],
   },
   {
     name: 'Mr. Priyanshu Dubey',
     role: 'Director',
     photo: priyanshuPhoto,
+    photoObjectPosition: 'object-center',
     description: 'Supports leadership and delivery with experience in risk management and verification operations.',
     expertise: ['Risk Management', 'Verification Ops', 'Execution'],
   },
@@ -33,6 +36,7 @@ const leaders = [
     name: 'Vishal Pandey',
     role: 'CTO / IT Head',
     photo: vishalPhoto,
+    photoObjectPosition: 'object-top',
     description: 'Leads IT systems and reporting infrastructure supporting field operations — including mobile application workflows, map-enabled tracking support, and secure server practices.',
     expertise: ['IT Infrastructure', 'Mobile App Reporting', 'Secure Systems'],
   },
@@ -40,6 +44,7 @@ const leaders = [
     name: 'Mrs. Ritika Thakur',
     role: 'Operation Head',
     photo: ritikaPhoto,
+    photoObjectPosition: 'object-center',
     description: 'Leads office operations and execution support for risk management and verification delivery.',
     expertise: ['Office Operations', 'Execution Support', 'Quality Reporting'],
   },
@@ -90,16 +95,26 @@ const Leadership = () => {
                   {/* Profile Placeholder */}
                   <div className="flex items-start gap-6 mb-6">
                     {leader.photo ? (
-                      <img
-                        src={leader.photo}
-                        alt={leader.name}
-                        loading="lazy"
-                        className="w-24 h-24 rounded-2xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-300"
-                      />
+                      <motion.div
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                        className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0"
+                      >
+                        <img
+                          src={leader.photo}
+                          alt={leader.name}
+                          loading="lazy"
+                          className={`w-full h-full object-cover ${leader.photoObjectPosition}`}
+                        />
+                      </motion.div>
                     ) : (
-                      <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-sky flex items-center justify-center flex-shrink-0 text-white text-3xl font-bold group-hover:scale-105 transition-transform duration-300">
+                      <motion.div
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                        className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-sky flex items-center justify-center flex-shrink-0 text-white text-3xl font-bold"
+                      >
                         {leader.name.split(' ').slice(-1)[0].charAt(0)}
-                      </div>
+                      </motion.div>
                     )}
                     <div>
                       <h3 className="text-xl font-bold mb-1">{leader.name}</h3>
