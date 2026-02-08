@@ -1,0 +1,33 @@
+name: Deploy (Vultr)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    # This job is automatically skipped until you add the required secrets.
+    if: ${{ secrets.VULTR_HOST != '' && secrets.VULTR_USER != '' && secrets.VULTR_SSH_KEY != '' }}
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VULTR_HOST }}
+          username: ${{ secrets.VULTR_USER }}
+          key: ${{ secrets.VULTR_SSH_KEY }}
+          port: ${{ secrets.VULTR_PORT || 22 }}
+          script: |
+            set -e
+            cd /var/www/thegtservices/app
+            git fetch origin
+            git reset --hard origin/main
+            npm ci
+            npm run build
+            rsync -az --delete dist/ /var/www/thegtservices/dist/
+            nginx -t
+            systemctl reload nginx
