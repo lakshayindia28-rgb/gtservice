@@ -12,6 +12,7 @@ const leaders = [
     name: 'Mr. Ajay Kumar Pathak',
     role: 'Chief Managing Director',
     photo: ajayPhoto,
+    photoFit: 'cover',
     photoObjectPosition: 'object-center',
     description: 'Leads the organization with a focus on risk management, KYC assignments, due diligence, prudential checks, and background verification operations.',
     expertise: ['Risk Management', 'KYC / Due Diligence', 'Background Verification'],
@@ -20,6 +21,7 @@ const leaders = [
     name: 'Mr. Ram Sevak Shukla',
     role: 'Director',
     photo: ramSevakPhoto,
+    photoFit: 'contain',
     photoObjectPosition: 'object-top',
     description: 'B.Tech (Civil) and extensive experience in engineering leadership roles, supporting governance and operational discipline.',
     expertise: ['Leadership', 'Property Valuation', 'Governance'],
@@ -28,6 +30,7 @@ const leaders = [
     name: 'Mr. Priyanshu Dubey',
     role: 'Director',
     photo: priyanshuPhoto,
+    photoFit: 'cover',
     photoObjectPosition: 'object-center',
     description: 'Supports leadership and delivery with experience in risk management and verification operations.',
     expertise: ['Risk Management', 'Verification Ops', 'Execution'],
@@ -36,6 +39,7 @@ const leaders = [
     name: 'Vishal Pandey',
     role: 'CTO / IT Head',
     photo: vishalPhoto,
+    photoFit: 'contain',
     photoObjectPosition: 'object-top',
     description: 'Leads IT systems and reporting infrastructure supporting field operations — including mobile application workflows, map-enabled tracking support, and secure server practices.',
     expertise: ['IT Infrastructure', 'Mobile App Reporting', 'Secure Systems'],
@@ -44,6 +48,7 @@ const leaders = [
     name: 'Mrs. Ritika Thakur',
     role: 'Operation Head',
     photo: ritikaPhoto,
+    photoFit: 'cover',
     photoObjectPosition: 'object-center',
     description: 'Leads office operations and execution support for risk management and verification delivery.',
     expertise: ['Office Operations', 'Execution Support', 'Quality Reporting'],
@@ -98,13 +103,13 @@ const Leadership = () => {
                       <motion.div
                         whileHover={{ scale: 1.08 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-                        className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0"
+                        className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 bg-secondary"
                       >
                         <img
                           src={leader.photo}
                           alt={leader.name}
                           loading="lazy"
-                          className={`w-full h-full object-cover ${leader.photoObjectPosition}`}
+                          className={`w-full h-full ${leader.photoFit === 'contain' ? 'object-contain' : 'object-cover'} ${leader.photoObjectPosition}`}
                         />
                       </motion.div>
                     ) : (
