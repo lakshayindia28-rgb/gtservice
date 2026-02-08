@@ -31,3 +31,8 @@ jobs:
             rsync -az --delete dist/ /var/www/thegtservices/dist/
             nginx -t
             systemctl reload nginx
+
+            # Optional: restart Contact API if you installed it as a service
+            if systemctl list-unit-files | grep -q "gt-contact-api.service"; then
+              systemctl restart gt-contact-api
+            fi

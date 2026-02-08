@@ -40,16 +40,6 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
-    if (!accessKey) {
-      toast({
-        title: 'Email not configured',
-        description: 'Please set VITE_WEB3FORMS_ACCESS_KEY on the server and redeploy.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
     if (isSubmitting) return;
     setIsSubmitting(true);
 
@@ -61,17 +51,13 @@ const Contact = () => {
       : 'Not selected';
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New Contact Form Submission — ${formData.name}`,
-          from_name: 'thegtservices.com',
-          replyto: formData.email,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -82,9 +68,7 @@ const Contact = () => {
       });
 
       const data = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null;
-      if (!res.ok || !data?.success) {
-        throw new Error(data?.message || 'Failed to send message');
-      }
+      if (!res.ok || !data?.success) throw new Error(data?.message || 'Failed to send message');
 
       toast({
         title: 'Message Sent!',
@@ -94,7 +78,10 @@ const Contact = () => {
     } catch (err) {
       toast({
         title: 'Failed to send message',
-        description: err instanceof Error ? err.message : 'Please try again in a moment.',
+        description:
+          err instanceof Error
+            ? err.message
+            : 'Please try again in a moment.',
         variant: 'destructive',
       });
     } finally {

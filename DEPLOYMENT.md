@@ -37,7 +37,10 @@ sudo nano .env
 
 Set:
 
-- `VITE_WEB3FORMS_ACCESS_KEY=...`
+- SMTP variables in `.env` (see `.env.example`) — specifically:
+    - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
+    - `MAIL_FROM=...` (sender)
+    - `MAIL_TO=info@thegtservices.com` (receiver)
 
 ```bash
 sudo mkdir -p /var/www/thegtservices
@@ -56,6 +59,26 @@ sudo rsync -az --delete dist/ /var/www/thegtservices/dist/
 ```
 
 After build, Nginx should serve: `/var/www/thegtservices/dist`.
+
+## Contact form email (API)
+
+This repo includes a small Contact API that sends:
+
+- Admin email to `MAIL_TO` (receiver)
+- Auto-reply email to the user who filled the form
+
+Start it on the server:
+
+```bash
+cd /var/www/thegtservices/app
+npm ci
+node server/contact-api.mjs
+```
+
+For production, run it as a service (recommended) and proxy requests from Nginx:
+
+- Add an Nginx `location /api/` that proxies to `http://127.0.0.1:8787`
+- Keep the API bound to localhost only
 
 ## 3) Nginx config (SPA-safe)
 
