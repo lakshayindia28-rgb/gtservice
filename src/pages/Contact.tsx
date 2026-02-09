@@ -37,10 +37,22 @@ const Contact = () => {
     message: '',
   });
 
+  const phoneDigits = formData.phone.replace(/\D/g, '');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (isSubmitting) return;
+
+    if (phoneDigits.length !== 10) {
+      toast({
+        title: 'Invalid mobile number',
+        description: 'Mobile number must be exactly 10 digits.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const serviceLabel = formData.service
@@ -60,7 +72,7 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: phoneDigits,
           company: formData.company,
           service: serviceLabel,
           message: formData.message,
@@ -172,11 +184,19 @@ const Contact = () => {
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Phone</label>
+                    <label className="block text-sm font-medium mb-2">Mobile Number *</label>
                     <Input
+                      required
+                      type="tel"
+                      inputMode="numeric"
+                      autoComplete="tel"
+                      pattern="[0-9]{10}"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 XXXXX XXXXX"
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                        setFormData({ ...formData, phone: digits });
+                      }}
+                      placeholder="10 digit mobile number"
                       className="bg-white/50"
                     />
                   </div>

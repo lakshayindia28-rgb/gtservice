@@ -30,6 +30,15 @@ function isValidEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function normalizePhoneDigits(value) {
+  if (typeof value !== 'string') return '';
+  return value.replace(/\D/g, '');
+}
+
+function isValidPhone10Digits(value) {
+  return typeof value === 'string' && /^\d{10}$/.test(value);
+}
+
 function safeText(value, maxLen) {
   if (typeof value !== 'string') return '';
   return value.trim().slice(0, maxLen);
@@ -82,13 +91,17 @@ app.post('/api/contact', async (req, res) => {
 
   const name = safeText(req.body?.name, 120);
   const email = safeText(req.body?.email, 160);
-  const phone = safeText(req.body?.phone, 60);
+  const phoneRaw = safeText(req.body?.phone, 60);
+  const phone = normalizePhoneDigits(phoneRaw);
   const company = safeText(req.body?.company, 120);
   const service = safeText(req.body?.service, 120);
   const message = safeText(req.body?.message, 5000);
 
-  if (!name || !isValidEmail(email) || !message) {
-    return res.status(400).json({ success: false, message: 'Invalid form data.' });
+  if (!name || !isValidEmail(email) || !message || !isValidPhone10Digits(phone)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid form data. Mobile number must be exactly 10 digits.',
+    });
   }
 
   const smtpPort = Number.parseInt(process.env.SMTP_PORT, 10);
