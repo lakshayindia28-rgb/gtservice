@@ -1,8 +1,15 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load `.env` from the project root (one level above `server/`).
+// This makes the API independent of the process working directory.
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const PORT = Number.parseInt(process.env.CONTACT_API_PORT || '8787', 10);
 
