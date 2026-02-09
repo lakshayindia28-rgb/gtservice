@@ -189,6 +189,6 @@ function escapeHtml(str) {
     .replaceAll("'", '&#039;');
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`Contact API listening on http://127.0.0.1:${PORT}`);
 });

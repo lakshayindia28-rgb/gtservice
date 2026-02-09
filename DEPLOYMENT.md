@@ -30,7 +30,24 @@ npm -v
 Create env file (required for Contact form email):
 
 ```bash
+# NOTE: Depending on how you cloned/copied the repo on the server, the project
+# may live at either:
+# - /var/www/thegtservices/app
+# - /var/www/thegtservices/app/clarity-sphere-lab
+# Always create `.env` in the same folder that contains `.env.example`.
+
 cd /var/www/thegtservices/app
+
+if [ -f .env.example ]; then
+    echo "Using project root: $PWD"
+elif [ -f clarity-sphere-lab/.env.example ]; then
+    cd clarity-sphere-lab
+    echo "Using project root: $PWD"
+else
+    echo "ERROR: Could not find .env.example in /var/www/thegtservices/app"
+    exit 1
+fi
+
 cp .env.example .env
 sudo nano .env
 ```
@@ -50,6 +67,17 @@ cd /var/www/thegtservices
 git clone https://github.com/lakshayindia28-rgb/gtservice.git app
 
 cd /var/www/thegtservices/app
+
+if [ -f package.json ]; then
+    echo "Using project root: $PWD"
+elif [ -f clarity-sphere-lab/package.json ]; then
+    cd clarity-sphere-lab
+    echo "Using project root: $PWD"
+else
+    echo "ERROR: Could not find package.json in /var/www/thegtservices/app"
+    exit 1
+fi
+
 npm ci
 npm run build
 
@@ -71,6 +99,17 @@ Start it on the server:
 
 ```bash
 cd /var/www/thegtservices/app
+
+if [ -f server/contact-api.mjs ]; then
+    echo "Using project root: $PWD"
+elif [ -f clarity-sphere-lab/server/contact-api.mjs ]; then
+    cd clarity-sphere-lab
+    echo "Using project root: $PWD"
+else
+    echo "ERROR: Could not find server/contact-api.mjs under /var/www/thegtservices/app"
+    exit 1
+fi
+
 npm ci
 node server/contact-api.mjs
 ```
