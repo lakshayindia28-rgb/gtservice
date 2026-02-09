@@ -67,8 +67,25 @@ const Contact = () => {
         }),
       });
 
-      const data = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null;
-      if (!res.ok || !data?.success) throw new Error(data?.message || 'Failed to send message');
+      const contentType = res.headers.get('content-type') || '';
+      const isJson = contentType.includes('application/json');
+      const data = (isJson
+        ? await res.json().catch(() => null)
+        : null) as { success?: boolean; message?: string } | null;
+
+      if (!res.ok || !data?.success) {
+        const fallback = `Request failed (HTTP ${res.status})`;
+        if (data?.message) throw new Error(data.message);
+
+        // Common case: Nginx returns HTML for 502/404, which isn't JSON.
+        if (!isJson) {
+          const text = await res.text().catch(() => '');
+          const hint = text.includes('502') || res.status === 502 ? ' (API not running)' : '';
+          throw new Error(`${fallback}${hint}`);
+        }
+
+        throw new Error(fallback);
+      }
 
       toast({
         title: 'Message Sent!',
