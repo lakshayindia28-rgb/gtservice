@@ -7,6 +7,34 @@ import {
   ArrowRight, CheckCircle, Clock, Shield, FileCheck2
 } from 'lucide-react';
 
+const serviceImages = import.meta.glob('../assets/services/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  as: 'url',
+}) as Record<string, string>;
+
+function normalizeSlug(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function getServiceImageUrl(serviceSlug: string | undefined) {
+  if (!serviceSlug) return undefined;
+
+  const wanted = normalizeSlug(serviceSlug);
+  const entries = Object.entries(serviceImages);
+
+  for (const [filePath, url] of entries) {
+    const fileName = filePath.split('/').pop() || '';
+    const baseName = fileName.replace(/\.[^.]+$/, '');
+    if (normalizeSlug(baseName) === wanted) return url;
+  }
+
+  return undefined;
+}
+
 const servicesData: Record<string, {
   icon: typeof Search;
   title: string;
@@ -510,6 +538,7 @@ const ServiceDetail = () => {
   }
 
   const IconComponent = service.icon;
+  const serviceImageUrl = getServiceImageUrl(serviceSlug);
 
   return (
     <Layout>
@@ -519,22 +548,59 @@ const ServiceDetail = () => {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto container-padding relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
-            <Link to="/services" className="inline-flex items-center gap-2 text-primary text-sm mb-6 hover:underline">
-              ← Back to Services
-            </Link>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center">
-                <IconComponent className="w-8 h-8 text-white" />
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold">{service.title}</h1>
+          {serviceImageUrl ? (
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-4xl"
+              >
+                <Link to="/services" className="inline-flex items-center gap-2 text-primary text-sm mb-6 hover:underline">
+                  ← Back to Services
+                </Link>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold">{service.title}</h1>
+                </div>
+                <p className="text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass-card overflow-hidden"
+              >
+                <div className="aspect-video w-full">
+                  <img
+                    src={serviceImageUrl}
+                    alt={service.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
             </div>
-            <p className="text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
-          </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-4xl"
+            >
+              <Link to="/services" className="inline-flex items-center gap-2 text-primary text-sm mb-6 hover:underline">
+                ← Back to Services
+              </Link>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center">
+                  <IconComponent className="w-8 h-8 text-white" />
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold">{service.title}</h1>
+              </div>
+              <p className="text-lg text-muted-foreground leading-relaxed">{service.longDescription}</p>
+            </motion.div>
+          )}
         </div>
       </section>
 

@@ -9,6 +9,8 @@ set -euo pipefail
 APP_DIR="/var/www/thegtservices/app"
 DIST_DIR="/var/www/thegtservices/dist"
 
+DEPLOY_BRANCH="${DEPLOY_BRANCH:-}"
+
 BUILD_DIR="$APP_DIR"
 
 if [[ ! -d "$APP_DIR/.git" ]]; then
@@ -19,8 +21,23 @@ fi
 
 cd "$APP_DIR"
 
-echo "== Pull latest =="
-git pull
+echo "== Update repo =="
+git fetch --prune origin
+
+if [[ -n "$DEPLOY_BRANCH" ]]; then
+  echo "Deploy branch: $DEPLOY_BRANCH"
+  if git show-ref --verify --quiet "refs/heads/$DEPLOY_BRANCH"; then
+    git checkout "$DEPLOY_BRANCH"
+  else
+    git checkout -B "$DEPLOY_BRANCH" "origin/$DEPLOY_BRANCH"
+  fi
+  git reset --hard "origin/$DEPLOY_BRANCH"
+else
+  # Backward compatible default: update the currently checked out branch
+  CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+  echo "Deploy branch (current): $CURRENT_BRANCH"
+  git pull --ff-only
+fi
 
 if [[ -f "$APP_DIR/package.json" ]]; then
   BUILD_DIR="$APP_DIR"

@@ -107,6 +107,7 @@ elif [ -f clarity-sphere-lab/server/contact-api.mjs ]; then
     echo "Using project root: $PWD"
 else
     echo "ERROR: Could not find server/contact-api.mjs under /var/www/thegtservices/app"
+
     exit 1
 fi
 
@@ -167,6 +168,44 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
+## 6) GitHub Actions (manual deploy)
+
+This repo includes a GitHub Actions workflow that deploys to your Vultr server **only when you run it manually**:
+
+- Workflow: `.github/workflows/deploy-vultr.yml`
+- Trigger: `Actions` → `Deploy (Vultr)` → `Run workflow`
+- Input: `branch` (defaults to `main`)
+
+### Required GitHub repo secrets
+
+Add these in GitHub:
+
+`Repo → Settings → Secrets and variables → Actions → New repository secret`
+
+- `VULTR_HOST`: server IP or hostname
+- `VULTR_USER`: SSH username (often `root` or a sudo-enabled user)
+- `VULTR_SSH_KEY`: private key (PEM) for SSH auth
+- `VULTR_PORT`: optional (default `22`)
+
+Note:
+- If `VULTR_USER` is not `root`, ensure it has passwordless `sudo` for `nginx`, `systemctl`, `rsync`, and `mkdir` (used during deploy).
+
+### Server setup for GitHub Actions SSH
+
+1) On your local machine, generate a deploy key:
+
+```bash
+ssh-keygen -t ed25519 -C "gtservice-deploy" -f ~/.ssh/gtservice_vultr
+```
+
+2) Add the public key to your Vultr server:
+
+```bash
+ssh-copy-id -i ~/.ssh/gtservice_vultr.pub <user>@<host>
+```
+
+3) Put the **private key** content into GitHub secret `VULTR_SSH_KEY`.
+
 ## 4) HTTPS (Let’s Encrypt)
 
 ```bash
@@ -204,4 +243,3 @@ sudo bash /var/www/thegtservices/app/scripts/deploy-on-server.sh
 ## Notes
 
 - If you use React Router and refresh a deep link (example: `/services/product-design`), the `try_files ... /index.html` line is required — otherwise you get 404.
-- If you want CI/CD later, we can add a GitHub Actions workflow to build and `rsync` the `dist/` folder to your Vultr server.

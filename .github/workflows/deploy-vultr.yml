@@ -2,8 +2,11 @@ name: Deploy (Vultr)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
+    inputs:
+      branch:
+        description: 'Git branch to deploy'
+        required: true
+        default: 'main'
 
 jobs:
   deploy:
@@ -23,16 +26,23 @@ jobs:
           port: ${{ secrets.VULTR_PORT || 22 }}
           script: |
             set -e
+            export DEPLOY_BRANCH='${{ inputs.branch }}'
+
             cd /var/www/thegtservices/app
-            git fetch origin
-            git reset --hard origin/main
-            npm ci
-            npm run build
-            rsync -az --delete dist/ /var/www/thegtservices/dist/
-            nginx -t
-            systemctl reload nginx
+
+            if [ -f scripts/deploy-on-server.sh ]; then
+              bash scripts/deploy-on-server.sh
+            elif [ -f clarity-sphere-lab/scripts/deploy-on-server.sh ]; then
+              bash clarity-sphere-lab/scripts/deploy-on-server.sh
+            else
+              echo "ERROR: deploy script not found"
+              exit 1
+            fi
+
+            sudo nginx -t
+            sudo systemctl reload nginx
 
             # Optional: restart Contact API if you installed it as a service
             if systemctl list-unit-files | grep -q "gt-contact-api.service"; then
-              systemctl restart gt-contact-api
+              sudo systemctl restart gt-contact-api
             fi
