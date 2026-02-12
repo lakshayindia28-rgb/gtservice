@@ -1,10 +1,41 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
+import { shouldContainServiceImage } from '@/lib/service-images';
 import { 
   Search, MapPin, Briefcase, FileText, Building2, 
   Receipt, FileCheck, Home, Scale, Users, Calculator, ArrowRight 
 } from 'lucide-react';
+
+const serviceImages = import.meta.glob('../assets/services/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
+
+function normalizeSlug(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function getServiceImageUrlFromPath(path: string) {
+  const match = path.match(/^\/services\/(.+)$/);
+  if (!match) return undefined;
+
+  const wanted = normalizeSlug(match[1]);
+  const entries = Object.entries(serviceImages);
+
+  for (const [filePath, url] of entries) {
+    const fileName = filePath.split('/').pop() || '';
+    const baseName = fileName.replace(/\.[^.]+$/, '');
+    if (normalizeSlug(baseName) === wanted) return url;
+  }
+
+  return undefined;
+}
 
 const verificationServices = [
   {
@@ -110,7 +141,7 @@ const businessComplianceServices = [
   },
 ];
 
-const itServices = [
+export const itServices = [
   {
     icon: Search,
     title: 'Product Discovery',
@@ -254,6 +285,26 @@ const ServicesIndex = () => {
                   to={service.path}
                   className="group block h-full glass-card-hover p-8"
                 >
+                  {(() => {
+                    const imageUrl = getServiceImageUrlFromPath(service.path);
+                    if (!imageUrl) return null;
+
+                    return (
+                      <div className="mb-6 overflow-hidden rounded-xl border border-border aspect-[16/9] bg-white">
+                        <img
+                          src={imageUrl}
+                          alt={service.title}
+                          loading="lazy"
+                          className={
+                            shouldContainServiceImage(service.path.replace(/^\/services\//, ''))
+                              ? 'h-full w-full object-contain p-3'
+                              : 'h-full w-full object-cover'
+                          }
+                        />
+                      </div>
+                    );
+                  })()}
+
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>
@@ -310,6 +361,26 @@ const ServicesIndex = () => {
                   to={service.path}
                   className="group block h-full glass-card-hover p-8"
                 >
+                  {(() => {
+                    const imageUrl = getServiceImageUrlFromPath(service.path);
+                    if (!imageUrl) return null;
+
+                    return (
+                      <div className="mb-6 overflow-hidden rounded-xl border border-border aspect-[16/9] bg-white">
+                        <img
+                          src={imageUrl}
+                          alt={service.title}
+                          loading="lazy"
+                          className={
+                            shouldContainServiceImage(service.path.replace(/^\/services\//, ''))
+                              ? 'h-full w-full object-contain p-3'
+                              : 'h-full w-full object-cover'
+                          }
+                        />
+                      </div>
+                    );
+                  })()}
+
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>
@@ -366,6 +437,26 @@ const ServicesIndex = () => {
                   to={service.path}
                   className="group block h-full glass-card-hover p-8"
                 >
+                  {(() => {
+                    const imageUrl = getServiceImageUrlFromPath(service.path);
+                    if (!imageUrl) return null;
+
+                    return (
+                      <div className="mb-6 overflow-hidden rounded-xl border border-border aspect-[16/9] bg-white">
+                        <img
+                          src={imageUrl}
+                          alt={service.title}
+                          loading="lazy"
+                          className={
+                            shouldContainServiceImage(service.path.replace(/^\/services\//, ''))
+                              ? 'h-full w-full object-contain p-3'
+                              : 'h-full w-full object-cover'
+                          }
+                        />
+                      </div>
+                    );
+                  })()}
+
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-sky flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <service.icon className="w-7 h-7 text-white" />
                   </div>

@@ -1,11 +1,34 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import {
+  getServiceImageUrlByKey,
+  getServiceImageUrlFromPath,
+  getServiceSlugFromPath,
+  shouldContainServiceImage,
+} from "@/lib/service-images";
 import { 
   Search, MapPin, Briefcase, FileText, Building2, 
   Receipt, FileCheck, Home, Scale, Users, Calculator, ArrowRight 
 } from 'lucide-react';
 
-const services = [
+type ServiceCard = {
+  icon: typeof Search;
+  title: string;
+  description: string;
+  path: string;
+  color: string;
+  imageKey?: string;
+};
+
+function getServiceImageUrl(service: ServiceCard) {
+  return (
+    getServiceImageUrlFromPath(service.path) ||
+    getServiceImageUrlByKey(service.imageKey) ||
+    getServiceImageUrlByKey(service.title)
+  );
+}
+
+const services: ServiceCard[] = [
   {
     icon: Search,
     title: 'Investigation',
@@ -94,8 +117,9 @@ const services = [
     icon: FileText,
     title: 'IT Services & Product Design',
     description: 'Secure reporting apps, dashboards, portals, and workflows to strengthen delivery and CX.',
-    path: '/contact',
+    path: '/services/it-product',
     color: 'from-primary to-sky',
+    imageKey: 'it-service',
   },
 ];
 
@@ -140,8 +164,37 @@ const Services = () => {
             >
               <Link
                 to={service.path}
-                className="group block h-full glass-card-hover p-6"
+                className="group block h-full glass-card-hover !bg-white hover:!bg-white backdrop-blur-none !border-border p-6"
               >
+                {/* Image */}
+                {(() => {
+                  const imageUrl = getServiceImageUrl(service);
+                  if (!imageUrl) return null;
+
+                  return (
+                    <div className="mb-5 overflow-hidden rounded-xl border border-border aspect-[16/9] bg-white">
+                        {imageUrl ? (() => {
+                          const slug = service.imageKey
+                            ? service.imageKey
+                            : getServiceSlugFromPath(service.path);
+                          const contain = shouldContainServiceImage(slug);
+                          return (
+                            <img
+                              src={imageUrl}
+                              alt={service.title}
+                              loading="lazy"
+                              className={
+                                contain
+                                  ? "h-full w-full object-contain p-3"
+                                  : "h-full w-full object-cover"
+                              }
+                            />
+                          );
+                        })() : null}
+                    </div>
+                  );
+                })()}
+
                 {/* Icon */}
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-7 h-7 text-white" />

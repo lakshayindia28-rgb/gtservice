@@ -1,39 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
+import { getServiceImageUrlBySlug, shouldContainServiceImage } from '@/lib/service-images';
 import { 
   Search, MapPin, Briefcase, FileText, Building2, 
   Receipt, FileCheck, Home, Scale, Users, Calculator,
   ArrowRight, CheckCircle, Clock, Shield, FileCheck2
 } from 'lucide-react';
-
-const serviceImages = import.meta.glob('../assets/services/*.{jpg,jpeg,png,webp}', {
-  eager: true,
-  as: 'url',
-}) as Record<string, string>;
-
-function normalizeSlug(value: string) {
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-function getServiceImageUrl(serviceSlug: string | undefined) {
-  if (!serviceSlug) return undefined;
-
-  const wanted = normalizeSlug(serviceSlug);
-  const entries = Object.entries(serviceImages);
-
-  for (const [filePath, url] of entries) {
-    const fileName = filePath.split('/').pop() || '';
-    const baseName = fileName.replace(/\.[^.]+$/, '');
-    if (normalizeSlug(baseName) === wanted) return url;
-  }
-
-  return undefined;
-}
 
 const servicesData: Record<string, {
   icon: typeof Search;
@@ -538,7 +511,7 @@ const ServiceDetail = () => {
   }
 
   const IconComponent = service.icon;
-  const serviceImageUrl = getServiceImageUrl(serviceSlug);
+  const serviceImageUrl = getServiceImageUrlBySlug(serviceSlug);
 
   return (
     <Layout>
@@ -578,7 +551,11 @@ const ServiceDetail = () => {
                     src={serviceImageUrl}
                     alt={service.title}
                     loading="lazy"
-                    className="w-full h-full object-cover"
+                    className={
+                      shouldContainServiceImage(serviceSlug)
+                        ? 'w-full h-full object-contain p-4'
+                        : 'w-full h-full object-cover'
+                    }
                   />
                 </div>
               </motion.div>

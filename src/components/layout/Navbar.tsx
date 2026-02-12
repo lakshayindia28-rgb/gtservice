@@ -254,7 +254,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-[22rem] md:w-[52rem] glass-card p-4"
+                        className="absolute top-full left-0 mt-2 w-[22rem] md:w-[52rem] rounded-2xl bg-white border border-border p-4"
                       >
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-h-[70vh] overflow-auto">
                           {serviceSections.map((section) => (
